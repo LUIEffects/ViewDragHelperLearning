@@ -42,7 +42,7 @@ public class DragLayout extends ViewGroup {
 	public DragLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		mDragHelper = ViewDragHelper
-				.create(this, 10f, new DragHelperCallback());
+				.create(this, 1f, new DragHelperCallback());
 		mDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_BOTTOM);
 		gestureDetector = new GestureDetectorCompat(context,
 				new YScrollDetector());
@@ -50,6 +50,7 @@ public class DragLayout extends ViewGroup {
 
 	@Override
 	protected void onFinishInflate() {
+		super.onFinishInflate();
 		// 跟findviewbyId一样，初始化上下两个view
 		frameView1 = getChildAt(0);
 		frameView2 = getChildAt(1);
@@ -76,7 +77,14 @@ public class DragLayout extends ViewGroup {
 	 * 这是拖拽效果的主要逻辑
 	 */
 	private class DragHelperCallback extends ViewDragHelper.Callback {
-
+		/**
+		 * 被拖拽的View位置发生变化时回调该方法
+		 * @param changedView 位置变化的View
+		 * @param left 	位置变化后的left
+		 * @param top  	位置变化后的top
+		 * @param dx	新旧位置在x坐标轴上的偏移量
+		 * @param dy	新旧位置在y坐标轴上的偏移量
+		 */
 		@Override
 		public void onViewPositionChanged(View changedView, int left, int top,
 				int dx, int dy) {
@@ -89,24 +97,48 @@ public class DragLayout extends ViewGroup {
 			onViewPosChanged(childIndex, top);
 		}
 
+		/**
+		 * 对触摸的View判断，如果需要当前触摸的子View进行拖拽移动就返回true，负责返回false
+		 * @param child
+		 * @param pointerId
+		 * @return
+		 */
 		@Override
 		public boolean tryCaptureView(View child, int pointerId) {
 			// 两个子View都需要跟踪，返回true
 			return true;
 		}
 
+		/**
+		 * 返回拖拽子View在垂直方向上可以被拖动的最远距离
+		 * @param child
+		 * @return
+		 */
 		@Override
 		public int getViewVerticalDragRange(View child) {
 			// 这个用来控制拖拽过程中松手后，自动滑行的速度，暂时给一个随意的数值
 			return 1;
 		}
 
+		/**
+		 * 当前拖拽的View松手或者ACTION_CANCLE时调用
+		 * @param releasedChild
+		 * @param xvel	离开屏幕时x方向的速度
+		 * @param yvel	离开屏幕时y方向的速度
+		 */
 		@Override
 		public void onViewReleased(View releasedChild, float xvel, float yvel) {
 			// 滑动松开后，需要向上或者乡下粘到特定的位置
 			animTopOrBottom(releasedChild, yvel);
 		}
 
+		/**
+		 * 计算child垂直方向的位置，top表示y轴坐标（相对于ViewGroup），默认返回0（如果不复写该方法）。这里，你可以控制垂直方向可移动的范围。
+		 * @param child		被拖拽的View
+		 * @param top		View应该到达的top坐标
+		 * @param dy		挪动差值
+		 * @return
+		 */
 		@Override
 		public int clampViewPositionVertical(View child, int top, int dy) {
 			int finalTop = top;
