@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DragLayoutDemo</string>
+    <string name="MainActivity_mBtnBrag_Text">DragDemo</string>
+    <string name="MainActivity_mBtnYoutube_Text">YoutubeDemo</string>
+</resources>

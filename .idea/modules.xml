@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ProductDetailDemo/ProductDetailDemo.iml" filepath="$PROJECT_DIR$/ProductDetailDemo/ProductDetailDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ViewDragHelperLearning.iml" filepath="$PROJECT_DIR$/ViewDragHelperLearning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YoutubeDemo/YoutubeDemo.iml" filepath="$PROJECT_DIR$/YoutubeDemo/YoutubeDemo.iml" />
+    </modules>
+  </component>
+</project>

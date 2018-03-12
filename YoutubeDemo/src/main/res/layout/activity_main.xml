@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lewish.start.draglayoutdemo.activity.MainActivity"
+    android:gravity="center_horizontal"
+    android:padding="10dp">
+
+    <Button
+        android:id="@+id/mBtnDrag"
+        android:text="@string/MainActivity_mBtnBrag_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/mBtnYoutube"
+        android:text="@string/MainActivity_mBtnYoutube_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
